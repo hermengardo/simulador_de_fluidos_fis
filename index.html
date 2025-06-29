@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Dinâmica de Fluidos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Simulador de Dinâmica de Fluidos</h1>
+            <p class="subtitle">Demonstração Educacional dos Princípios Fundamentais</p>
+        </header>
+
+        <div class="content">
+            <h2>Introdução</h2>
+            <p>Quando falamos de fluido no senso comum, estamos nos referindo em geral a água ou outros líquidos. Para a ciência, no entanto, fluidos são substâncias capazes de escoar ou fluir (MOYSÉS). Essa definição amplia muito o conceito do senso comum, a partir dela, podemos trabalhar como fluidos diferentes fenômenos, como gases e até mesmo populações.</p>
+            <p>Assim, o que conecta todos esses sistemas aparentemente diferentes é que eles se comportam de maneira similar quando se movimentam. Muitos cientistas que trabalham com fluidos estão interessados em entender exatamente como esses movimentos acontecem. As equações que descrevem o movimento dos fluidos incluem as equações de Navier-Stokes, que relacionam velocidade, pressão e viscosidade. Embora essas equações sejam um modelo preciso para a maioria dos fluidos na natureza [STAM], resolvê-las manualmente é possível apenas para casos muito simples.</p>
+
+            <div class="equations">
+                <div class="equation">
+                    $$\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{u} = -\frac{\nabla p}{\rho} + \nu \nabla^2 \mathbf{u} + \mathbf{f}$$
+                </div>
+                <div class="equation">
+                    $$\nabla \cdot \mathbf{u} = 0$$
+                </div>
+                <p style="text-align: center; font-style: italic; margin-top: 1rem;">
+                Equações de Navier-Stokes para fluidos incompressíveis
+                </p>
+
+                <div class="terms" style="text-align: left; margin-top: 2rem; font-size: 0.9em;">
+                    <h4>Explicação dos Termos:</h4>
+                    <div class="term"><strong>\(\frac{\partial \mathbf{u}}{\partial t}\):</strong> Aceleração local (variação da velocidade no tempo)</div>
+                    <div class="term"><strong>\((\mathbf{u} \cdot \nabla)\mathbf{u}\):</strong> Termo convectivo (transporte de momento)</div>
+                    <div class="term"><strong>\(-\frac{\nabla p}{\rho}\):</strong> Força de pressão por unidade de massa</div>
+                    <div class="term"><strong>\(\nu \nabla^2 \mathbf{u}\):</strong> Termo viscoso (difusão de momento)</div>
+                    <div class="term"><strong>\(\mathbf{f}\):</strong> Forças externas por unidade de massa</div>
+                    <div class="term"><strong>\(\nabla \cdot \mathbf{u} = 0\):</strong> Equação da continuidade (conservação de massa)</div>
+                </div>
+            </div>
+
+            <p>Justamente porque a equação de Navier-Stokes é difícil de ser resolvida, a simulação computacional oferece uma alternativa para obter valores aproximados da solução. São essas aproximações que os cientistas utilizam para trabalhar em contextos mais complexos.</p>
+
+            <h2>Simulação</h2>
+            <p>
+                Cras dui ante, luctus sit amet nunc eu, luctus placerat odio. Proin justo metus, eleifend id elit vel, laoreet hendrerit tellus. Etiam gravida nibh nec odio tempor, ut aliquam ligula laoreet. Quisque auctor arcu enim, vel auctor sapien volutpat non. Maecenas lectus risus, sollicitudin nec erat porta, ultricies fringilla ipsum. Quisque euismod in dolor quis lobortis. Phasellus rutrum neque eu placerat faucibus. In pulvinar varius iaculis. Curabitur vel porttitor tortor. Sed id lacus iaculis, sollicitudin est tempor, mollis elit. Phasellus nec interdum massa. Maecenas quis efficitur nisi. Praesent pulvinar quis nulla et molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+            </p>
+
+            <div class="simulation-area">
+                <div class="fluid-container" id="fluidContainer">
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="viscosity">Viscosidade:</label>
+                    <input type="range" id="viscosity" min="0.1" max="2" step="0.1" value="1">
+                    <span class="value-display" id="viscosityValue">1.0</span>
+                </div>
+                <div class="control-group">
+                    <label for="flow-speed">Velocidade:</label>
+                    <input type="range" id="flow-speed" min="0.5" max="3" step="0.1" value="1.5">
+                    <span class="value-display" id="flowSpeedValue">1.5</span>
+                </div>
+                <div class="control-group">
+                    <label for="particle-count">N° Partículas:</label>
+                    <input type="range" id="particle-count" min="50" max="200" step="10" value="100">
+                    <span class="value-display" id="particleCountValue">100</span>
+                </div>
+            </div>
+
+            <h2>Aplicações Práticas</h2>
+            <p>
+                [Exemplos de aplicações reais da dinâmica de fluidos computacional em engenharia e ciências.]
+            </p>
+        </div>
+
+        <div class="references">
+            <h3>Referências Bibliográficas</h3>
+            <ol>
+                <li>Anderson, J. D. (2017). <em>Computational Fluid Dynamics: The Basics with Applications</em>. McGraw-Hill Education.</li>
+                <li>Versteeg, H. K., & Malalasekera, W. (2007). <em>An Introduction to Computational Fluid Dynamics: The Finite Volume Method</em>. Pearson Education.</li>
+                <li>Ferziger, J. H., & Perić, M. (2002). <em>Computational Methods for Fluid Dynamics</em>. Springer-Verlag.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
