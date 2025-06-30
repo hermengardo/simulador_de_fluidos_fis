@@ -6,6 +6,11 @@ body {
    padding: 0;
    line-height: 1.5;
    text-align: justify;
+   overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 .container {
@@ -218,4 +223,16 @@ li {
 
 .term strong {
    color: #343a40;
+}
+
+#fluidContainer {
+  width: 512px;
+  height: 512px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+canvas {
+  display: block;
 }

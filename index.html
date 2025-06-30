@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Dinâmica de Fluidos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -17,7 +18,7 @@
         <div class="content">
             <h2>Introdução</h2>
             <p>Quando falamos de fluido no senso comum, estamos nos referindo em geral a água ou outros líquidos. Para a ciência, no entanto, fluidos são substâncias capazes de escoar ou fluir (MOYSÉS). Essa definição amplia muito o conceito do senso comum, a partir dela, podemos trabalhar como fluidos diferentes fenômenos, como gases e até mesmo populações.</p>
-            <p>Assim, o que conecta todos esses sistemas aparentemente diferentes é que eles se comportam de maneira similar quando se movimentam. Muitos cientistas que trabalham com fluidos estão interessados em entender exatamente como esses movimentos acontecem. As equações que descrevem o movimento dos fluidos incluem as equações de Navier-Stokes, que relacionam velocidade, pressão e viscosidade. Embora essas equações sejam um modelo preciso para a maioria dos fluidos na natureza [STAM], resolvê-las manualmente é possível apenas para casos muito simples.</p>
+            <p>O que conecta todos esses sistemas aparentemente diferentes é que eles se comportam de maneira similar quando se movimentam. Muitos cientistas que trabalham com fluidos estão interessados em entender exatamente como esses movimentos acontecem. As equações que descrevem o movimento dos fluidos incluem as equações de Navier-Stokes, que relacionam velocidade, pressão e viscosidade. Embora essas equações sejam um modelo preciso para a maioria dos fluidos na natureza [STAM], resolvê-las manualmente é possível apenas para casos muito simples.</p>
 
             <div class="equations">
                 <div class="equation">
@@ -43,33 +44,41 @@
 
             <p>Justamente porque a equação de Navier-Stokes é difícil de ser resolvida, a simulação computacional oferece uma alternativa para obter valores aproximados da solução. São essas aproximações que os cientistas utilizam para trabalhar em contextos mais complexos. O algoritmo apresentado neste site é uma simulação baseada nas equações de Navier-Stokes. O simulador foi proposto, inicialmente, para jogos de videogame e busca representar de forma realista, porém simplificada, os movimentos dos fluidos [STAM]. Em jogos, esse tipo de técnica permite criar efeitos visuais realistas de fenômenos como fumaça, água ou vento, sem comprometer o desempenho dos computadores.</p>
 
-            <p>Assim, embora muitos jogadores não saibam disso, em seus jogos de videogame há mecânicas complexas da física sendo simuladas. Mecânicas que só se tornaram viáveis graças ao trabalho de inúmeros cientistas dedicados ao estudo dos fluidos.</p>
+            <p>Embora muitos jogadores não saibam, em seus jogos de videogame há mecânicas complexas da física sendo simuladas. Mecânicas que só se tornaram viáveis graças ao trabalho de inúmeros cientistas dedicados ao estudo dos fluidos.</p>
 
             <h2>Simulação</h2>
             <p>
                 Cras dui ante, luctus sit amet nunc eu, luctus placerat odio. Proin justo metus, eleifend id elit vel, laoreet hendrerit tellus. Etiam gravida nibh nec odio tempor, ut aliquam ligula laoreet. Quisque auctor arcu enim, vel auctor sapien volutpat non. Maecenas lectus risus, sollicitudin nec erat porta, ultricies fringilla ipsum. Quisque euismod in dolor quis lobortis. Phasellus rutrum neque eu placerat faucibus. In pulvinar varius iaculis. Curabitur vel porttitor tortor. Sed id lacus iaculis, sollicitudin est tempor, mollis elit. Phasellus nec interdum massa. Maecenas quis efficitur nisi. Praesent pulvinar quis nulla et molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus.
             </p>
 
+            <h2>Simulação</h2>
             <div class="simulation-area">
-                <div class="fluid-container" id="fluidContainer">
-                </div>
-            </div>
-
-            <div class="controls">
-                <div class="control-group">
-                    <label for="viscosity">Viscosidade:</label>
-                    <input type="range" id="viscosity" min="0.1" max="2" step="0.1" value="1">
-                    <span class="value-display" id="viscosityValue">1.0</span>
-                </div>
-                <div class="control-group">
-                    <label for="flow-speed">Velocidade:</label>
-                    <input type="range" id="flow-speed" min="0.5" max="3" step="0.1" value="1.5">
-                    <span class="value-display" id="flowSpeedValue">1.5</span>
-                </div>
-                <div class="control-group">
-                    <label for="particle-count">N° Partículas:</label>
-                    <input type="range" id="particle-count" min="50" max="200" step="10" value="100">
-                    <span class="value-display" id="particleCountValue">100</span>
+                <canvas id="fluidCanvas" width="600" height="400"></canvas>
+                <div id="controls">
+                    <button class="button" id="windTunnel">Wind Tunnel</button>
+                    <button class="button" id="hiresTunnel">Hires Tunnel</button>
+                    <button class="button" id="tank">Tank</button>
+                    <button class="button" id="paint">Paint</button>
+                    <div class="control-group">
+                        <input type="checkbox" id="streamButton">
+                        <label for="streamButton">Linhas de corrente</label>
+                    </div>
+                    <div class="control-group">
+                        <input type="checkbox" id="velocityButton">
+                        <label for="velocityButton">Velocidades</label>
+                    </div>
+                    <div class="control-group">
+                        <input type="checkbox" id="pressureButton">
+                        <label for="pressureButton">Pressão</label>
+                    </div>
+                    <div class="control-group">
+                        <input type="checkbox" id="smokeButton" checked>
+                        <label for="smokeButton">Fumaça</label>
+                    </div>
+                    <div class="control-group">
+                        <input type="checkbox" id="overrelaxButton" checked>
+                        <label for="overrelaxButton">Overrelax</label>
+                    </div>
                 </div>
             </div>
 
@@ -91,5 +100,6 @@
             </ol>
         </div>
     </div>
+    <script src="simulador.js"></script>
 </body>
 </html>
