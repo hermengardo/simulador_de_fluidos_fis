@@ -297,7 +297,7 @@
                 - parseFloat(containerStyles.paddingRight);
 
             this.canvas.width = Math.min(containerWidth, window.innerWidth - 40);
-            this.canvas.height = Math.min(600, window.innerHeight - 250); // limite de altura arbitrário para não ficar gigante
+            this.canvas.height = Math.min(600, window.innerHeight - 250);
 
             this.cScale = this.canvas.height / this.simHeight;
             this.simWidth = this.canvas.width / this.cScale;
@@ -360,7 +360,7 @@
 
             let res = 100;
             if (sceneNr === 0) res = 50;
-            else if (sceneNr === 3) res = 200;
+            else if (sceneNr === 3) res = 100;
 
             const domainHeight = 1.0;
             const domainWidth = domainHeight / this.simHeight * this.simWidth;
